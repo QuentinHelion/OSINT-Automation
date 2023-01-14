@@ -5,13 +5,12 @@ FROM python:3.10
 WORKDIR ./OSINT-Automation/
 
 # Copy the requirements file
-# COPY requirements.txt .
+COPY requirements.txt .
 
 # Install the dependencies
-# RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the application code
-# COPY OSINT-Automation ./app
 COPY . .
 
 # Expose the port that the app will run on
