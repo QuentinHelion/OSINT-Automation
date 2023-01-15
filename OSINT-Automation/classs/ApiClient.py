@@ -4,9 +4,17 @@ class ApiClient:
         self.url = data
 
     def get(self, data):
-        response = requests.get(self.url, params=data)
+        try:
+            response = requests.get(self.url, params=data)
+        except Exception as e:
+            return e
+
         return response.json()
 
     def post(self, data):
-        response = requests.post(url, json=data)
+        try:
+            response = requests.post(url, json=data)
+        except Exception as e:
+            return e
+            
         return response.json()
