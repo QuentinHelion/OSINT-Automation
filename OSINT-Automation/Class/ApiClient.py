@@ -1,7 +1,7 @@
 import requests
 class ApiClient:
-    def __init__(self, data):
-        self.url = data
+    def __init__(self, url):
+        self.url = url
 
     def get(self, data):
         try:
@@ -11,9 +11,9 @@ class ApiClient:
 
         return response.json()
 
-    def post(self, data):
+    def post(self, headers, data):
         try:
-            response = requests.post(url, json=data)
+            response = requests.post(self.url, headers=headers, json=data)
         except Exception as e:
             return e
             
