@@ -22,3 +22,7 @@ class Uriscanio:
         }
 
         self.apiClient.post(headers, data)
+
+
+uri = Uriscanio("845e7986-30af-4ea3-b7b1-5111a4e8046d")
+print(uri.call("https://urlyouwanttoscan.com/path/"))

@@ -1,4 +1,5 @@
 import requests
+import json
 class ApiClient:
     def __init__(self, url):
         self.url = url
@@ -13,11 +14,10 @@ class ApiClient:
 
         return response.json()
 
-    def post(self, headers, data):
+    def post(self, data, headers=None):
         print("ApiClient: post")
-        try:
-            response = requests.post(self.url, headers=headers, json=data)
-        except Exception as e:
-            return e
-            
+        if headers:
+            response = requests.post(self.url, json=data, headers=headers)
+        else:
+            response = requests.post(self.url, json=data)
         return response.json()
