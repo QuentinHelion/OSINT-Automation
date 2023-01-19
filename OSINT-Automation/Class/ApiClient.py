@@ -14,13 +14,20 @@ class ApiClient:
 
         return response.json()
 
-    def post(self, data, headers=None):
+    def post(self, data, token, headers=None):
         print("ApiClient: post")
+
         if headers:
             print("With header")
-            response = requests.post(self.url, data=json.dumps(data), headers=headers)
+            try:
+                response = requests.post(self.url, headers=headers, data=json.dumps(data))
+            except Exception as e:
+                return e
         else:
             print("Without header")
-            response = requests.post(self.url, data=json.dumps(data))
+            try:
+                response = requests.post(self.url, data=json.dumps(data))
+            except Exception as e:
+                return e
 
         return response.json()

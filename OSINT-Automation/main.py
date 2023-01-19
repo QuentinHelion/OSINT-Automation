@@ -26,7 +26,7 @@ def main():
     print("Starting...")
 
     env = Env("../.env")
-    print(env.get_var("API_KEY_USISCANIO"))
+    # print(env.get_var("API_KEY_USISCANIO"))
 
     uri = Uriscanio(env.get_var("API_KEY_USISCANIO"))
     result = uri.call("google.com")

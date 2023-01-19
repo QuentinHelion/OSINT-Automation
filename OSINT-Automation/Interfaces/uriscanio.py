@@ -13,12 +13,17 @@ class Uriscanio:
     def call(self, url):
         headers = {
             "API-Key": self.api_key,
-            "Content - Type": "application / json"
+            "Content-Type": "application/json"
         }
 
         data = {
             "url": url,
             "visibility": "public"
         }
+        print(data)
 
-        return self.apiClient.post(headers, data)
+        return self.apiClient.post( data, self.api_key, headers)
+
+    def decode(self, response):
+        print("Response decoding...")
+        return "Ok"
