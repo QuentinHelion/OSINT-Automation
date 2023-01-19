@@ -2,7 +2,7 @@ import sys
 sys.path.append("../")
 from Class import ApiClient
 
-class Uriscanio:
+class Urlscanio:
     API_URL = "https://urlscan.io/api/v1/scan/"
 
     def __init__(self, api_key):
@@ -10,7 +10,7 @@ class Uriscanio:
         self.api_key = api_key
         self.apiClient = ApiClient(self.API_URL)
 
-    def call(self, url):
+    def scan(self, url):
         headers = {
             "API-Key": self.api_key,
             "Content-Type": "application/json"
@@ -26,6 +26,4 @@ class Uriscanio:
 
     def getResult(self, response):
         self.apiClient.url = response["api"]
-        print(self.apiClient.url)
-
         return self.apiClient.get()

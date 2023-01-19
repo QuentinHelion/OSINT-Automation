@@ -9,9 +9,9 @@ def main():
 
     # Objects
     env = Env("../.env") # .env reader
-    uri = Uriscanio(env.get_var("API_KEY_USISCANIO"))
+    uri = Urlscanio(env.get_var("API_KEY_USISCANIO"))
 
-    result = uri.call("google.com")
+    result = uri.scan("google.com")
     print(result)
     print("Waiting for result...")
     time.sleep(10)  # Sleep for 10s, needed to wait results charge on api
