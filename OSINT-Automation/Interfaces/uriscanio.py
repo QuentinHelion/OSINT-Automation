@@ -22,8 +22,10 @@ class Uriscanio:
         }
         print(data)
 
-        return self.apiClient.post( data, self.api_key, headers)
+        return self.apiClient.post(data, headers)
 
-    def decode(self, response):
-        print("Response decoding...")
-        return "Ok"
+    def getResult(self, response):
+        self.apiClient.url = response["api"]
+        print(self.apiClient.url)
+
+        return self.apiClient.get()

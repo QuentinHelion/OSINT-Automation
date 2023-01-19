@@ -5,16 +5,22 @@ class ApiClient:
         self.url = url
         print("Init ApiClient")
 
-    def get(self, data):
+    def get(self, data=None):
         print("ApiClient: get")
-        try:
-            response = requests.get(self.url, params=data)
-        except Exception as e:
-            return e
+        if data:
+            try:
+                response = requests.get(self.url, params=data)
+            except Exception as e:
+                return e
+        else:
+            try:
+                response = requests.get(self.url)
+            except Exception as e:
+                return e
 
         return response.json()
 
-    def post(self, data, token, headers=None):
+    def post(self, data, headers=None):
         print("ApiClient: post")
 
         if headers:
