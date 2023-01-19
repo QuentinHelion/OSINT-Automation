@@ -11,7 +11,3 @@ class Env:
 
     def get_var(self, var_name):
         return os.getenv(var_name)
-
-# env = Env(".env")
-# api_key = env.get_var("API_KEY")
-# print(api_key)

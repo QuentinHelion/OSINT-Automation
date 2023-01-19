@@ -17,7 +17,10 @@ class ApiClient:
     def post(self, data, headers=None):
         print("ApiClient: post")
         if headers:
-            response = requests.post(self.url, json=data, headers=headers)
+            print("With header")
+            response = requests.post(self.url, data=json.dumps(data), headers=headers)
         else:
-            response = requests.post(self.url, json=data)
+            print("Without header")
+            response = requests.post(self.url, data=json.dumps(data))
+
         return response.json()
