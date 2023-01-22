@@ -1,1 +1,134 @@
-uriscan
+Quotas & Rate Limiting
+Some actions on urlscan.io are subject to quotas and rate-limits, regardless of performed in the UI or via the API.
+There are separate limits per minute, per hour and per day for each action. Check your personal quotas for details.
+Only successful requests count against your quota, i.e. requests which return an HTTP 200 status code.
+We use a fixed-window approach to rate-limit requests, with resets at the full minute, hour and midnight UTC.
+If you exceed a rate-limit for an action, the API will respond with a HTTP 429 error code for additional requests against that action.
+You can query your current limits and used quota like this:
+curl -H "Content-Type: application/json" -H "API-Key: $apikey" "https://urlscan.io/user/quotas/" 
+The API returns X-Rate-Limit HTTP headers on each request to a rate-limited resource. The values only apply to the action of that API request, i.e. if you exceeded your quota for private scans you might still have available quota to submit unlisted scans or perform a search request. The limit returned is always the next one to be exceed in absolute numbers, so if your per-hour quota still has 1000 requests remaining but your per-day quota only has 500 requests left, you will receive the per-day quota. Make sure to respect the rate-limit headers as returned by every request.
+
+X-Rate-Limit-Scope: ip-address
+X-Rate-Limit-Action: search
+X-Rate-Limit-Window: minute
+X-Rate-Limit-Limit: 30
+X-Rate-Limit-Remaining: 24
+X-Rate-Limit-Reset: 2020-05-18T20:19:00.000Z
+X-Rate-Limit-Reset-After: 17
+X-Rate-Limit-Scope	Either user (with cookie or API-Key header) or ip-address for unauthenticated requests.
+X-Rate-Limit-Action	Which API actions the rate-limit refers to, e.g. search or public.
+X-Rate-Limit-Window	Rate window with the least fewest remaining calls, either minute,hour, or day.
+X-Rate-Limit-Limit	Your rate-limit for this action and window.
+X-Rate-Limit-Remaining	Remaining calls for this action and window (not counting the current request).
+X-Rate-Limit-Reset	ISO-8601 timestamp of when the rate-limit resets.
+X-Rate-Limit-Reset-After	Seconds remaining until the rate-limit resets.
+Submission API
+The submission API allows you to submit a URL to be scanned and set some options for the scan.
+
+curl
+Python
+Tines
+curl -X POST "https://urlscan.io/api/v1/scan/" \
+      -H "Content-Type: application/json" \
+      -H "API-Key: $apikey" \
+      -d "{ \
+        \"url\": \"$url\", \"visibility\": \"public\", \
+        \"tags\": [\"demotag1\", \"demotag2\"] \
+      }"
+If the visibility parameter is omitted, scans will default to your configured default visibility.
+The response to the API call will return the following JSON object, including the unique scan UUID and API endpoint for the scan. With the unique UUID you can retrieve the scan result, screenshot and DOM snapshot after waiting for a while. While the scan is still in progress, the Result API endpoint will respond with the HTTP 404 status code. The suggested polling logic would be to wait 10-30 seconds directly after submission and then polling in 5-second intervals until the scan is finished or a maximum wait time has been reached.
+{
+  "message": "Submission successful",
+  "uuid": "0e37e828-a9d9-45c0-ac50-1ca579b86c72",
+  "result": "https://urlscan.io/result/0e37e828-a9d9-45c0-ac50-1ca579b86c72/",
+  "api": "https://urlscan.io/api/v1/result/0e37e828-a9d9-45c0-ac50-1ca579b86c72/",
+  "visibility": "public",
+  "options": {
+    "useragent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36"
+  },
+  "url": "https://urlscan.io",
+  "country": "de"
+}
+Other options that can be set in the POST data JSON object:
+
+customagent: Override User-Agent for this scan
+referer: Override HTTP referer for this scan
+visibility: One of public, unlisted, private. Defaults to your configured default visibility.
+tags: User-defined tags to annotate this scan, e.g. "phishing" or "malicious". Limited to 10 tags.
+overrideSafety: If set to any value, this will disable reclassification of URLs with potential PII in them. Use with care!
+country: Specify which country the scan should be performed from (2-Letter ISO-3166-1 alpha-2 country). See the API endpoint for possible values.
+If you have a list of URLs, you can use the following code-snippet to submit all of them:
+
+echo list|tr -d "\r"|while read url; do
+  curl -X POST "https://urlscan.io/api/v1/scan/" \
+      -H "Content-Type: application/json" \
+      -H "API-Key: $apikey" \
+      -d "{\"url\": \"$url\", \"visibility\": \"public\"}"
+  sleep 2;
+done
+Result API, Screenshots & DOM snapshots
+Using the Scan ID received from the Submission API, you can use the Result API to poll for the scan. The most efficient approach would be to wait at least 10 seconds before starting to poll, and then only polling 2-second intervals with an eventual upper timeout in case the scan does not return.
+
+curl
+Tines
+curl https://urlscan.io/api/v1/result/$uuid/
+Until a scan is finished, this URL will respond with a HTTP 404 status code.
+Once the scan is finished, the Result API URL will respond with HTTP 200 and return a JSON object with a number of properties. The properties are documented in detail in the Result API Reference.
+
+With the UUID you can also retrieve the DOM Snapshot and PNG Screenshot for a particular scan using the following URLs:
+
+curl https://urlscan.io/screenshots/$uuid.png
+curl https://urlscan.io/dom/$uuid/
+If either of these endpoints respond with HTTP 404 after the scan has finished it means that we did not store the DOM snapshot or screenshot.
+
+Search API
+You can use the same ElasticSearch syntax to search for scans as on the Search page. Each result has high-level metadata about the scan result and a link to the API for the full scan result. For a comprehensive list of available searchable fields, consult the urlscan.io Search API Reference.
+
+curl
+Tines
+curl "https://urlscan.io/api/v1/search/?q=domain:urlscan.io"
+Available query parameters for the search endpoint:
+q
+The query term (ElasticSearch Query String Query). Default: "*"
+size
+Number of results returned. Default: 100, Max: 10000 (depending on your subscription)
+search_after
+For retrieving the next batch of results, value of the sort attribute of the last (oldest) result you received (comma-separated).
+The search API returns an array of results where each entry includes these items:
+
+_id
+The UUID of the scan
+sort
+The sort key, to be used with search_after
+page
+Information about the page after it finished loading
+task
+Parameters for the scan
+stats
+High-level stats about the page
+brand
+Pro Only Detected phishing against specific brands
+For comprehensive list of available searchable fields, consult the urlscan.io Search API Reference.
+The API search will only indicate an exact count of results up to 10,000 results in the total property. After that the has_more flag will be true. Use the sort value of the last (i.e. oldest) scan result in the current list of results as a parameter for the next Search API call. Supply this value in the search_after query parameter for getting the next (older) batch of results.
+
+API search will find Public scans performed by anyone as well as Unlisted and Private scans performed by you or your teams.
+
+Error Codes
+The API returns different error codes using the HTTP status and will also include some high-level information in the JSON response, including the status code, a message and sometimes a more elaborate description.
+
+For scan submissions, there are various reasons why a scan request won't be accepted and will return an error code. This includes, among others:
+
+Blacklisted domains and URLs, requested to be blacklisted by their respective owners.
+Spammy submissions of URLs known to be used only for spamming this service.
+Invalid hostnames or invalid protocol schemes (FTP etc).
+Missing URL property ... yes, it does happen.
+Contains HTTP basic auth information ... yes, that happens as well.
+Non-resolvable hostnames (A, AAAA, CNAME) which we will not even try to scan.
+An error will typically be indicated by the HTTP 400 status code. It might look like this:
+
+{
+  "message": "DNS Error - Could not resolve domain",
+  "description": "The domain .google.com could not be resolved to a valid IPv4/IPv6 address. We won't try to load it in the browser.",
+  "status": 400
+}
+If you think an error is incorrect, let us know via mail!

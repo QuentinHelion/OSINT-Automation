@@ -136,18 +136,20 @@ def submenu(menu_win):
                 menu_win.refresh()
                 submenu_win.erase()
                 submenu_win.refresh()
-                doc_win.refresh()
                 doc_win.scrollok(True)
+                doc_win.refresh()
+                
                 doc= ToolsDocs["DNSSCAN"]
                 text = getDoc(doc)
                 
                 
                 current_item = 0
                 while True:
-                    #doc_win.addstr(0, 0, text)
-                    for line in text.split("\n"):
-                        doc_win.addstr(line)
-                        doc_win.scroll()
+                    doc_win.addstr(0, 0, text)
+                    #for line in text.split("\n"):
+                        #doc_win.addstr(line)
+                    doc_win.scroll()
+                    doc_win.refresh() 
                     if doc_win.getch() == 27: #escape ASCII value is 27
                         doc_win.erase()
                         doc_win.refresh()
@@ -164,3 +166,21 @@ def submenu(menu_win):
 
 
 wrapper(main)
+
+
+"""
+Example of how to use config.yaml
+
+with open("config.yaml", "r") as file:
+    config = yaml.safe_load(file)
+
+dnsscan_doc = config["DOCS"]["DNSCAN"]
+shodan_doc = config["DOCS"]["SHODAN"]
+theharvester_doc = config["DOCS"]["THEHARVESTER"]
+uriscan_doc = config["DOCS"]["URISCAN"]
+
+with open(uriscan_doc) as f:
+    contents = f.read()
+print(contents)
+
+"""
