@@ -3,10 +3,6 @@ from curses import wrapper
 import time
 import os
 
-#---------------Dictionary to store file names---------------
-ToolsDocs = {"DNSSCAN":"dnsscan_doc.txt", "SHODAN":"shodan_doc.txt", "THEHARVESTER":"theharvester_doc.txt", "URISCAN":"uriscan_doc.txt"}
-
-
 #---------------Ncurses menu to read the documentation---------------
 
 def main(stdscr):
@@ -70,7 +66,7 @@ def enumAndHL(menuWindowName,menuItemsList,current_item):
 
 def submenu(menu_win,max_height,max_width,tool):
 
-    submenu = ["Use tool", "Doc", "Return"]
+    submenu = ["Start", "Documentation", "Return"]
 
     submenu_win = curses.newwin(max_height,max_width, 0, 0) 
 
