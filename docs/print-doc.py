@@ -113,11 +113,11 @@ def submenu(menu_win,max_height,max_width,tool):
                     case "DNSCAN":
                         os.system("man -l app-dnscan.1")
                     case "SHODAN":
-                        print("yes shodan")
+                        os.system("man -l app-shodan.1")
                     case "THEHARVESTER":
-                        print("yes the harvester")
+                        os.system("man -l app-theharvester.1")
                     case "URISCAN":
-                        print("yes uriscan")
+                        os.system("man -l app-uriscan.1")
                 
                 menu_win.erase()
                 menu_win.refresh()
