@@ -7,46 +7,17 @@ import os
 ToolsDocs = {"DNSSCAN":"dnsscan_doc.txt", "SHODAN":"shodan_doc.txt", "THEHARVESTER":"theharvester_doc.txt", "URISCAN":"uriscan_doc.txt"}
 
 
-
-#---------------Clear terminal---------------
-#def clear():
-#    os.system('clear')
-
-
-
-#---------------Get text from documentation files---------------
-def getDoc(doc):
-    with open(doc) as f:
-        contents = f.read()
-    return contents
-
-def docWin(stdscr):
-
-    curses.curs_set(0)
-    h, w = stdscr.getmaxyx()
-    text = getDoc(doc)
-    while True:
-        curses.initscr()
-        stdscr.addstr(0, 0, text)
-        stdscr.refresh()
-        
-        if stdscr.getch() == ord('q'):
-            break
-
-   
-    
-
 #---------------Ncurses menu to read the documentation---------------
 
 def main(stdscr):
-
-    menu = ["DNSCAN", "SHODAN", "THE HARVESTER","URISCAN", "Exit"]
     
-    menu_win = curses.newwin(len(menu) + 2, 30, 2, 10) 
+    menu = ["DNSCAN", "SHODAN", "THE HARVESTER","URISCAN", "Exit"]
+    max_height, max_width = stdscr.getmaxyx()
+    menu_win = curses.newwin(max_height, max_width, 0, 0) 
 
     setupMenuWindow(menu_win)
     menu_win.box()
-    menu_win.bkgd(" ", curses.color_pair(1))
+    menu_win.bkgd(0, curses.color_pair(1))
     menu_win.refresh()
     
 
@@ -69,22 +40,24 @@ def main(stdscr):
                 
         elif c == ord("\n"): # ord("\n") is the key code for the enter key
             if current_item == 0:
-                submenu(menu_win)
+                submenu(menu_win,max_height,max_width,"DNSCAN")
             if current_item == 1:
-                submenu(menu_win)
+                submenu(menu_win,max_height,max_width,"SHODAN")
             if current_item == 2:
-                submenu(menu_win)
+                submenu(menu_win,max_height,max_width,"THEHARVESTER")
             if current_item == 3:
-                submenu(menu_win)
+                submenu(menu_win,max_height,max_width,"URISCAN")
             if current_item == 4:
                 break
         elif c == 27:
+            menu_win.erase()
+            menu_win.refresh()
             break
 
 
 def setupMenuWindow(menuWindowName):
     curses.curs_set(0)
-    curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLACK)
+    curses.init_pair(1, curses.COLOR_CYAN, curses.COLOR_BLACK)
     
 
 def enumAndHL(menuWindowName,menuItemsList,current_item):
@@ -95,11 +68,11 @@ def enumAndHL(menuWindowName,menuItemsList,current_item):
                 menuWindowName.addstr(idx + 1, 2, item, curses.color_pair(1))
     menuWindowName.refresh()
 
-def submenu(menu_win):
+def submenu(menu_win,max_height,max_width,tool):
 
     submenu = ["Use tool", "Doc", "Return"]
 
-    submenu_win = curses.newwin(len(submenu)+2, 30, 2, 10) 
+    submenu_win = curses.newwin(max_height,max_width, 0, 0) 
 
     setupMenuWindow(submenu_win)
     menu_win.erase()
@@ -125,37 +98,34 @@ def submenu(menu_win):
                 current_item += 1
 
         elif v == ord("\n"): # ord("\n") is the key code for the enter key
-            #if current_item == 0:
-                  
+            if current_item == 0:
+                match tool:
+                    case "DNSCAN":
+                        print("yes dnscan")
+                    case "SHODAN":
+                        print("yes shodan")
+                    case "THEHARVESTER":
+                        print("yes the harvester")
+                    case "URISCAN":
+                        print("yes uriscan")
             if current_item == 1:
-                doc_win = curses.newwin(50  ,140,0,0 ) 
-
-                setupMenuWindow(doc_win)
-                doc_win.bkgd(" ", curses.color_pair(1))
+                match tool:
+                    case "DNSCAN":
+                        os.system("man -l app-dnscan.1")
+                    case "SHODAN":
+                        print("yes shodan")
+                    case "THEHARVESTER":
+                        print("yes the harvester")
+                    case "URISCAN":
+                        print("yes uriscan")
+                
                 menu_win.erase()
                 menu_win.refresh()
+                submenu_win.box()
+                
+            if current_item == 2:
                 submenu_win.erase()
                 submenu_win.refresh()
-                doc_win.scrollok(True)
-                doc_win.refresh()
-                
-                doc= ToolsDocs["DNSSCAN"]
-                text = getDoc(doc)
-                
-                
-                current_item = 0
-                while True:
-                    doc_win.addstr(0, 0, text)
-                    #for line in text.split("\n"):
-                        #doc_win.addstr(line)
-                    doc_win.scroll()
-                    doc_win.refresh() 
-                    if doc_win.getch() == 27: #escape ASCII value is 27
-                        doc_win.erase()
-                        doc_win.refresh()
-                        submenu_win.box()
-                        break
-            if current_item == 2:
                 menu_win.box()
                 break
 
@@ -166,7 +136,7 @@ def submenu(menu_win):
 
 
 wrapper(main)
-
+os.system("clear")
 
 """
 Example of how to use config.yaml
