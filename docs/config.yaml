@@ -1,7 +1,0 @@
-# config.yaml
-
-DOCS:
-    DNSCAN: dnsscan_doc.txt
-    SHODAN: shodan_doc.txt
-    THEHARVESTER: theharvester_doc.txt
-    URISCAN: uriscan_doc.txt
