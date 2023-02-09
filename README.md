@@ -8,7 +8,7 @@ l'api ou l'outil en ligne de commande)
 * TheHarvester - Récupère des informations sur des adresses mails, noms de domaine etc.
 * [Urlscan.io](https://urlscan.io/docs/api/) - réalise un scan d'une cible et récupère des informations.
 Vous pouvez également implémenter d'autres outils à la place, tant qu'aucun d'entre eux ne réalise de test
-actif sur votre cible.
+actif sur votre cible.  - FAIT
 ___
 ## Consignes
 Votre script python doit être le plus modulable possible. Il peut prendre des arguments (bilbliothèque Sys
@@ -27,7 +27,7 @@ Vous travaillerez en groupe de 2 ou 3 ou seul pour ce TP. Utilisation de Git **o
 qui font le TP seul - permet de suivre les différents commit ou l'utilisation de branch).<br><br>
 ## En extension (sur 5 point) :
 - Aujouter la recherche de Google Dorks à votre script. (2,5 points)
-- Contenerisez votre application dans un Docker. (2,5 points)
+- Contenerisez votre application dans un Docker. (2,5 points)         - FAIT
 ## Rendu
 Le rendu se fera sur MyGes avec au choix :
 - Une archive au format NOM1_NOM2_NOM3.zip contenant le code et les fichiers demandés (Readme et
