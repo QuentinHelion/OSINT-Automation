@@ -9,6 +9,7 @@ COPY requirements.txt .
 
 # Install the dependencies
 RUN pip install --no-cache-dir -r requirements.txt
+RUN python3 -m pip install -r OSINT-Automation/lib/theHarvester/requirements/base.txt
 
 # Copy the application code
 COPY . .
