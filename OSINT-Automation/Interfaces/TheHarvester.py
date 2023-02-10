@@ -7,4 +7,4 @@ class TheHarvester:
         self.source = source
 
     def run(self):
-        os.system(f"theharvester -d {self.target} -l {self.limit} -b {self.source}")
+        os.system("python3 lib/theHarvester/theHarvester.py -d {self.target} -l {self.limit} -b {self.source}")
