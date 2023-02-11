@@ -1,0 +1,3 @@
+[submodule "OSINT-Automation/lib/OSINT-Automation/lib/dnscan"]
+	path = OSINT-Automation/lib/OSINT-Automation/lib/dnscan
+	url = https://github.com/rbsec/dnscan.git
