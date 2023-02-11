@@ -23,6 +23,10 @@ def main():
 
     dnscan.run()
 
+    harvester = TheHarvester("google.com")
+    harvester.run()
+
+
     print("ending...")
 
 
