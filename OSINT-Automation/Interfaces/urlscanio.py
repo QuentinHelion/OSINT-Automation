@@ -1,13 +1,15 @@
 import sys
 sys.path.append("../")
 from Class import ApiClient
+from Class import Env
 
 class Urlscanio:
     API_URL = "https://urlscan.io/api/v1/scan/"
 
-    def __init__(self, api_key):
+    def __init__(self):
         print("Init")
-        self.api_key = api_key
+        env = Env("../../.env") # .env reader
+        self.api_key = env.get_var("API_KEY_USISCANIO")
         self.apiClient = ApiClient(self.API_URL)
 
     def scan(self, url):

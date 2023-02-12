@@ -2,20 +2,22 @@ import shodan
 import os
 import json
 from Class import ApiClient
+from Class import Env
 
 #initialise the shodan API object
 
-    #for CLI : 
+    #for CLI :
     #shodan init <API_KEY>
 
 class Appshodan:
 
-    def __init__(self, api_key):
+    def __init__(self):
         #set key
-        self.api_key = api_key
-        self.api = shodan.Shodan(api_key) #will be used by shodan methods
-        
-    
+        env = Env("../../.env") # .env reader
+        self.api_key = env.get_var("API_KEY_SHODAN")
+        self.api = shodan.Shodan(self.api_key) #will be used by shodan methods
+
+
     def write_to_file_json(self, query, output_list):
         PATH_TO_RESULTS = "Results/Shodan/"
         self.query = query
@@ -23,12 +25,12 @@ class Appshodan:
 
         filename = query + '.json'
         output_file = PATH_TO_RESULTS + filename
-        
+
         jsonStr = json.dumps(output_list)
         with open(output_file, "w") as f:
             print(jsonStr, file=f)
         print("Output-file successfully created !")
-    
+
 
     def write_to_file(self,query,data):
         PATH_TO_RESULTS = "Results/Shodan/"
@@ -36,13 +38,13 @@ class Appshodan:
 
         filename = 'list-' + data[0] + '.txt'
         output_file = PATH_TO_RESULTS + filename
-        
+
         with open(output_file, "w") as f:
             print(query, file=f)
         print("Output-file successfully created !")
 
     def shodan_search(self, query):
-        
+
         self.query = query
         output = []
         try:
@@ -59,12 +61,12 @@ class Appshodan:
                     output.append({"Timestamp" : result.get('timestamp', '')})
                     output.append(result.get('location', ''))
 
-                    
+
         except shodan.APIError as e:
                 print('Error: {}'.format(e))
-        
+
         self.write_to_file_json(self.query,output)
-        
+
 
     def shodan_host(self, ip):
         self.ip = ip
@@ -80,7 +82,7 @@ class Appshodan:
                     output.append({"CVE" : results['cve']})
                     output.append({"CVSS" : results['cvss']})
                     output.append({"Published" : results['published']})
-                    output.append({"Title" : results['title']})              
+                    output.append({"Title" : results['title']})
 
 
         except shodan.APIError as e:
@@ -134,7 +136,7 @@ class Appshodan:
 
         self.apiClient = ApiClient(RESOLVE_URL)
         self.hostnames = hostnames
-        
+
         query = {
             "hostnames": self.hostnames,
             "key": self.api_key
@@ -142,7 +144,7 @@ class Appshodan:
 
         self.write_to_file(self.apiClient.get(query),self.hostnames)
 
-    
+
     def shodan_reverse(self,ips):
         REVERSE_URL = "https://api.shodan.io/dns/reverse"
 
@@ -157,6 +159,3 @@ class Appshodan:
         }
 
         self.write_to_file(self.apiClient.get(query),self.ips)
-
-        
-
