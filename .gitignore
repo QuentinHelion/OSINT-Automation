@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+venv
+.env
+OSINT-Automation/results/theHarvester/*
+OSINT-Automation/results/Dnscan/*
+OSINT-Automation/results/Shodan/*
