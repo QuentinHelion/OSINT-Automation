@@ -107,13 +107,13 @@ def submenu(menu_win,max_height,max_width,tool):
             if current_item == 1:
                 match tool:
                     case "DNSCAN":
-                        os.system("man -l app-dnscan.1")
+                        os.system("man -l docs/app-dnscan.1")
                     case "SHODAN":
-                        os.system("man -l app-shodan.1")
+                        os.system("man -l docs/app-shodan.1")
                     case "THEHARVESTER":
-                        os.system("man -l app-theharvester.1")
+                        os.system("man -l docs/app-theharvester.1")
                     case "URISCAN":
-                        os.system("man -l app-uriscan.1")
+                        os.system("man -l docs/app-uriscan.1")
 
                 menu_win.erase()
                 menu_win.refresh()
@@ -131,5 +131,5 @@ def submenu(menu_win,max_height,max_width,tool):
 
 
 
-wrapper(main)
+wrapper(mainMenu)
 os.system("clear")
