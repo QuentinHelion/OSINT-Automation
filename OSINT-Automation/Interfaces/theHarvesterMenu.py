@@ -15,7 +15,9 @@ def theHarvesterMenu(menu_win,max_height,max_width):
 
     menu_win.clear()
     menu_win.addstr("Domaine : ")
+    curses.echo()
     domain = menu_win.getstr().decode()
+    curses.noecho()
     menu_win.erase()
     menu_win.clear()
     menu_win.refresh()
