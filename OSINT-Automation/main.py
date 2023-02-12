@@ -7,12 +7,12 @@ import json
 def main():
     print("Starting...")
 
-    app = True
-
-    while app:
-        result = mainMenu();
-        if result == "end":
-            app = False
+    # app = True
+    #
+    # while app:
+    #     result = mainMenu();
+    #     if result == "end":
+    #         app = False
         # elif result == "harvester":
             # theHarvesterMenu()
 
@@ -21,15 +21,18 @@ def main():
 
     # Objects
         #Uriscan
-    uri = Urlscanio(env.get_var("API_KEY_USISCANIO"))
+    # uri = Urlscanio()
+    # urlscanKEY = env.get_var("API_KEY_USISCANIO")
         #Dnscan
-    dns = "google.com"
-    dnscan = Dnscan(dns)
+    # dns = "google.com"
+    # dnscan = Dnscan(dns)
         #Shodan
     shodan = Appshodan(env.get_var("API_KEY_SHODAN"))
         #theHarvester
     # harvester = TheHarvester("google.com")
     # harvester.run()
+
+    mainMenu(urlscanKEY);
 
 
    # result = uri.scan("google.com")

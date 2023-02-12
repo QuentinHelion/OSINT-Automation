@@ -1,0 +1,16 @@
+[*] Processing domain googgle.com
+[*] Using system resolvers: 127.0.0.53
+[+] Getting nameservers
+216.239.34.99 - ns2.googledomains.com
+216.239.38.99 - ns4.googledomains.com
+216.239.32.99 - ns1.googledomains.com
+216.239.36.99 - ns3.googledomains.com
+[-] Zone transfer failed
+
+[+] TXT records found
+"v=spf1 -all"
+[+] DMARC records found
+"v=DMARC1; p=reject; rua=mailto:mailauth-reports@google.com"
+[-] DNSSEC not supported
+
+[*] Scanning googgle.com for A records

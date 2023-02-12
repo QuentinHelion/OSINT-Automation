@@ -3,6 +3,8 @@ from curses import wrapper
 import time
 import os
 from .theHarvesterMenu import *
+from .dnScanMenu import *
+from .urlscanMenu import *
 
 #---------------Ncurses menu to read the documentation---------------
 
@@ -98,14 +100,16 @@ def submenu(menu_win,max_height,max_width,tool):
             if current_item == 0:
                 match tool:
                     case "DNSCAN":
-                        print("yes dnscan")
+                        # print("yes dnscan")
+                        dnScanMenu(menu_win,max_height,max_width)
                     case "SHODAN":
                         print("yes shodan")
                     case "THEHARVESTER":
                         # print("yes the harvester")
                         theHarvesterMenu(menu_win,max_height,max_width)
                     case "URISCAN":
-                        print("yes uriscan")
+                        urlscanMenu(menu_win,max_height,max_width)
+                        # print("yes uriscan")
             if current_item == 1:
                 match tool:
                     case "DNSCAN":

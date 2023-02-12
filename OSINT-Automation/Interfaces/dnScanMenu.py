@@ -1,7 +1,7 @@
 import curses
-from .TheHarvester import *
+from .Dnscan import *
 
-def theHarvesterMenu(menu_win,max_height,max_width):
+def dnScanMenu(menu_win,max_height,max_width):
     # submenu_win = curses.newwin(max_height,max_width, 0, 0)
 
     submenu_win = curses.newwin(max_height,max_width, 0, 0)
@@ -15,12 +15,12 @@ def theHarvesterMenu(menu_win,max_height,max_width):
 
     menu_win.clear()
     menu_win.addstr("Domaine : ")
-    domain = menu_win.getstr().decode()
+    dns = menu_win.getstr().decode()
     menu_win.erase()
     menu_win.clear()
     menu_win.refresh()
     # curses.wrapper(theHarvesterMenu)
-    harvester = TheHarvester(domain)
-    harvester.run()
+    dnscan = Dnscan(dns)
+    dnscan.run()
     menu_win.refresh()
     menu_win.getkey()

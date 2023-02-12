@@ -1,14 +1,27 @@
 [*] Processing domain google.com
-[*] Using system resolvers: 192.168.1.1
+[*] Using system resolvers: 127.0.0.53
 [+] Getting nameservers
-216.239.32.10 - ns1.google.com
-216.239.36.10 - ns3.google.com
 216.239.38.10 - ns4.google.com
 216.239.34.10 - ns2.google.com
+216.239.36.10 - ns3.google.com
+216.239.32.10 - ns1.google.com
 [-] Zone transfer failed
 
 [+] IPv6 (AAAA) records found. Try running dnscan with the [32m-6 [0moption.
-2a00:1450:4007:818::200e
+2a00:1450:4007:819::200e
+[+] TXT records found
+"atlassian-domain-verification=5YjTmWmjI92ewqkx2oXmBaD60Td9zWon9r6eakvHX6B77zzkFQto8PQ9QsKnbf4I"
+"webexdomainverification.8YX6G=6e6922db-e3e6-4a36-904e-a805c28087fa"
+"google-site-verification=TV9-DBe4R80X4v0M4U_bd_J9cpOJM0nikft0jAgjmsQ"
+"google-site-verification=wD8N7i1JTNTkezJ49swvWW48f8_9xveREV4oB-0Hf5o"
+"onetrust-domain-verification=de01ed21f2fa4d8781cbc3ffb89cf4ef"
+"docusign=05958488-4752-4ef2-95eb-aa7ba8a3bd0e"
+"v=spf1 include:_spf.google.com ~all"
+"docusign=1b0a6754-49b1-4db5-8540-d2c12664b289"
+"globalsign-smime-dv=CDYX+XFHUw2wml6/Gb8+59BsH31KzUr6c1l2BPvqKX8="
+"facebook-domain-verification=22rm551cu4k0ab0bxsw536tlds4h95"
+"MS=E4A68B9AB2BB9670BCE15412F62916164C0B20BB"
+"apple-domain-verification=30afIBcvSuDV2PLX"
 [+] DMARC records found
 "v=DMARC1; p=reject; rua=mailto:mailauth-reports@google.com"
 [-] DNSSEC not supported
@@ -16,127 +29,94 @@
 [+] MX records found, added to target list
 10 smtp.google.com.
 [*] Scanning google.com for A records
-142.250.179.110 - google.com
-142.250.74.237 - accounts.google.com
-216.58.214.78 - admin.google.com
-216.58.213.78 - ads.google.com
-216.239.38.181 - analytics.google.com
-216.239.36.181 - analytics.google.com
-216.239.34.181 - analytics.google.com
-216.239.32.181 - analytics.google.com
-142.250.75.238 - apps.google.com
-142.250.201.164 - api.google.com
-142.250.201.174 - archive.google.com
-216.58.214.174 - billing.google.com
-142.250.201.169 - blog.google.com
-142.250.178.142 - business.google.com
-216.58.214.174 - calendar.google.com
-142.250.179.110 - careers.google.com
-142.250.179.78 - catalog.google.com
+216.58.214.174 - google.com
+142.250.179.77 - accounts.google.com
+216.58.213.78 - admin.google.com
+142.250.178.142 - ads.google.com
+216.58.214.174 - analytics.google.com
+216.58.214.164 - api.google.com
+142.250.178.142 - apps.google.com
+142.250.74.238 - archive.google.com
+142.250.75.238 - billing.google.com
+142.250.75.233 - blog.google.com
+142.250.75.238 - business.google.com
+172.217.18.206 - calendar.google.com
+142.250.201.174 - careers.google.com
+216.58.214.174 - catalog.google.com
+142.250.75.238 - catalogue.google.com
 216.58.214.174 - chat.google.com
-142.250.179.78 - catalogue.google.com
 216.58.215.46 - classroom.google.com
-216.58.214.174 - cloud.google.com
-216.58.214.78 - contacts.google.com
+142.250.201.174 - cloud.google.com
+142.250.201.174 - contacts.google.com
 142.250.27.129 - corp.google.com
-142.250.75.238 - d.google.com
-142.250.75.238 - design.google.com
-142.250.201.164 - desktop.google.com
+142.250.178.142 - d.google.com
+142.250.179.100 - desktop.google.com
+216.58.213.78 - design.google.com
 142.250.179.110 - developers.google.com
-142.250.179.78 - dl.google.com
+142.250.75.238 - directory.google.com
+142.250.74.238 - dl.google.com
 8.8.8.8 - dns.google.com
 8.8.4.4 - dns.google.com
-142.250.75.238 - directory.google.com
-216.58.214.174 - docs.google.com
-142.250.178.142 - doc.google.com
+142.250.179.110 - docs.google.com
+142.250.179.78 - doc.google.com
+172.217.18.196 - download.google.com
+216.58.214.68 - downloads.google.com
 142.250.75.238 - domains.google.com
-142.250.74.228 - downloads.google.com
-142.250.74.228 - download.google.com
-142.250.75.238 - email.google.com
-216.58.214.174 - edu.google.com
-216.58.214.174 - events.google.com
-142.250.75.238 - files.google.com
+142.250.201.174 - edu.google.com
+142.250.179.78 - email.google.com
+216.58.215.46 - events.google.com
 142.250.75.238 - finance.google.com
+142.250.75.238 - files.google.com
+216.58.215.46 - forms.google.com
 108.170.217.160 - feeds.google.com
-142.250.75.238 - forms.google.com
-142.250.201.174 - foto.google.com
+142.250.179.110 - foto.google.com
 142.250.75.238 - games.google.com
 142.250.75.238 - gmail.google.com
-216.239.34.177 - groups.google.com
-216.239.38.177 - groups.google.com
-216.239.36.177 - groups.google.com
-216.239.32.177 - groups.google.com
-142.250.178.142 - health.google.com
-142.250.75.238 - help.google.com
-142.250.178.142 - home.google.com
-142.250.74.227 - id.google.com
-142.250.75.238 - images.google.com
-142.250.75.238 - image.google.com
-142.250.179.78 - ipv4.google.com
-142.250.75.238 - jobs.google.com
-142.250.75.238 - labs.google.com
+74.125.133.113 - groups.google.com
+74.125.133.138 - groups.google.com
+74.125.133.139 - groups.google.com
+74.125.133.101 - groups.google.com
+74.125.133.102 - groups.google.com
+74.125.133.100 - groups.google.com
+142.250.179.110 - help.google.com
+172.217.18.206 - health.google.com
+142.250.179.78 - home.google.com
+142.250.201.163 - id.google.com
+142.250.179.110 - images.google.com
+142.250.178.142 - image.google.com
+142.250.179.110 - ipv4.google.com
+216.58.214.78 - jobs.google.com
 216.239.32.58 - ldap.google.com
-216.58.214.174 - local.google.com
-142.250.75.238 - lp.google.com
-142.250.74.235 - m.google.com
-142.250.201.165 - mail.google.com
-142.250.179.78 - map.google.com
-142.250.179.78 - maps.google.com
-142.250.75.238 - mars.google.com
-216.58.213.78 - meet.google.com
-142.250.74.235 - mobile.google.com
-142.250.75.238 - music.google.com
-142.250.178.142 - news.google.com
+142.250.201.174 - labs.google.com
+142.250.201.174 - local.google.com
+142.250.179.110 - lp.google.com
+142.250.179.75 - m.google.com
+142.250.179.101 - mail.google.com
+142.250.75.238 - map.google.com
+142.250.75.238 - maps.google.com
+216.58.214.78 - mars.google.com
+142.250.178.142 - meet.google.com
+216.58.213.75 - mobile.google.com
+142.250.179.78 - music.google.com
+142.250.75.238 - news.google.com
 216.239.32.10 - ns.google.com
 216.239.32.10 - ns1.google.com
 216.239.34.10 - ns2.google.com
 216.239.36.10 - ns3.google.com
 216.239.38.10 - ns4.google.com
-142.250.75.238 - on.google.com
-142.250.75.238 - partners.google.com
-64.233.166.92 - pay.google.com
-108.177.15.92 - payments.google.com
-142.250.178.142 - photos.google.com
-142.250.178.142 - photo.google.com
-142.250.75.238 - postmaster.google.com
-142.250.75.238 - research.google.com
-108.177.15.81 - sandbox.google.com
-142.250.75.238 - search.google.com
-142.250.75.238 - security.google.com
-142.250.75.238 - services.google.com
-64.233.167.92 - shopping.google.com
-142.250.201.174 - sites.google.com
-142.250.75.238 - sms.google.com
-108.177.15.26 - smtp.google.com
-74.125.133.27 - smtp.google.com
-173.194.76.27 - smtp.google.com
-108.177.15.27 - smtp.google.com
-173.194.76.26 - smtp.google.com
-142.250.179.110 - store.google.com
-216.58.214.174 - support.google.com
-142.250.179.110 - survey.google.com
-216.58.214.174 - tools.google.com
-216.239.35.0 - time.google.com
+142.250.179.110 - on.google.com
+142.250.201.174 - partners.google.com
+173.194.76.92 - pay.google.com
+66.102.1.92 - payments.google.com
+142.250.179.78 - photos.google.com
+142.250.179.110 - photo.google.com
+142.250.179.110 - postmaster.google.com
+142.250.179.110 - research.google.com
 216.239.35.8 - time.google.com
-216.239.35.12 - time.google.com
 216.239.35.4 - time.google.com
-216.58.213.78 - travel.google.com
-142.250.75.238 - tv.google.com
-216.58.214.79 - upload.google.com
+216.239.35.12 - time.google.com
+216.239.35.0 - time.google.com
 108.170.217.160 - uploads.google.com
-142.250.75.238 - video.google.com
-142.250.75.238 - videos.google.com
-64.9.224.69 - vpn.google.com
-64.9.224.70 - vpn.google.com
-64.9.224.68 - vpn.google.com
-142.250.75.238 - w.google.com
-142.250.75.238 - web.google.com
-142.250.75.238 - wap.google.com
-142.250.75.238 - webmaster.google.com
+142.250.75.238 - travel.google.com
 142.250.75.238 - work.google.com
-64.233.167.123 - wifi.google.com
-142.250.75.238 - ww.google.com
-142.250.179.100 - www.google.com
-142.250.179.68 - www5.google.com
-142.250.201.174 - www4.google.com
-142.250.201.164 - www6.google.com
+142.250.179.100 - www6.google.com

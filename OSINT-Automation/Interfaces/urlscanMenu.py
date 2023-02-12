@@ -1,7 +1,7 @@
 import curses
-from .TheHarvester import *
+from .urlscanio import *
 
-def theHarvesterMenu(menu_win,max_height,max_width):
+def urlscanMenu(menu_win,max_height,max_width):
     # submenu_win = curses.newwin(max_height,max_width, 0, 0)
 
     submenu_win = curses.newwin(max_height,max_width, 0, 0)
@@ -19,8 +19,8 @@ def theHarvesterMenu(menu_win,max_height,max_width):
     menu_win.erase()
     menu_win.clear()
     menu_win.refresh()
+    uri = Urlscanio()
     # curses.wrapper(theHarvesterMenu)
-    harvester = TheHarvester(domain)
-    harvester.run()
+    uri.scan(domain)
     menu_win.refresh()
     menu_win.getkey()
