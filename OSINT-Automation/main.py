@@ -6,6 +6,7 @@ import json
 
 def main():
     print("Starting...")
+    GoogleDorks()
     mainMenu();
     print("ending...")
 
