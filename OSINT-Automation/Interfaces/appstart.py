@@ -5,6 +5,7 @@ import os
 from .theHarvesterMenu import *
 from .dnScanMenu import *
 from .urlscanMenu import *
+from .shodanMenu import *
 
 #---------------Ncurses menu to read the documentation---------------
 
@@ -103,7 +104,8 @@ def submenu(menu_win,max_height,max_width,tool):
                         # print("yes dnscan")
                         dnScanMenu(menu_win,max_height,max_width)
                     case "SHODAN":
-                        print("yes shodan")
+                        # print("yes shodan")
+                        shodanMenu(menu_win,max_height,max_width)
                     case "THEHARVESTER":
                         # print("yes the harvester")
                         theHarvesterMenu(menu_win,max_height,max_width)
