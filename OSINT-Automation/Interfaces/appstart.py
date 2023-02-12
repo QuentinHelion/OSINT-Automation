@@ -2,6 +2,10 @@ import curses
 from curses import wrapper
 import time
 import os
+from .theHarvesterMenu import *
+from .dnScanMenu import *
+from .urlscanMenu import *
+from .shodanMenu import *
 
 #---------------Ncurses menu to read the documentation---------------
 
@@ -97,23 +101,27 @@ def submenu(menu_win,max_height,max_width,tool):
             if current_item == 0:
                 match tool:
                     case "DNSCAN":
-                        print("yes dnscan")
+                        # print("yes dnscan")
+                        dnScanMenu(menu_win,max_height,max_width)
                     case "SHODAN":
-                        print("yes shodan")
+                        # print("yes shodan")
+                        shodanMenu(menu_win,max_height,max_width)
                     case "THEHARVESTER":
-                        print("yes the harvester")
+                        # print("yes the harvester")
+                        theHarvesterMenu(menu_win,max_height,max_width)
                     case "URISCAN":
-                        print("yes uriscan")
+                        urlscanMenu(menu_win,max_height,max_width)
+                        # print("yes uriscan")
             if current_item == 1:
                 match tool:
                     case "DNSCAN":
-                        os.system("man -l app-dnscan.1")
+                        os.system("man -l docs/app-dnscan.1")
                     case "SHODAN":
-                        os.system("man -l app-shodan.1")
+                        os.system("man -l docs/app-shodan.1")
                     case "THEHARVESTER":
-                        os.system("man -l app-theharvester.1")
+                        os.system("man -l docs/app-theharvester.1")
                     case "URISCAN":
-                        os.system("man -l app-uriscan.1")
+                        os.system("man -l docs/app-uriscan.1")
 
                 menu_win.erase()
                 menu_win.refresh()
@@ -127,9 +135,10 @@ def submenu(menu_win,max_height,max_width,tool):
 
         elif v == 27: #escape ASCII value is 27
             menu_win.box()
+            return "end"
             break
 
 
 
-wrapper(main)
+wrapper(mainMenu)
 os.system("clear")

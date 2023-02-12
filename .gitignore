@@ -3,3 +3,5 @@ __pycache__/
 venv
 .env
 OSINT-Automation/results/theHarvester/*
+OSINT-Automation/results/Dnscan/*
+OSINT-Automation/results/Shodan/*
