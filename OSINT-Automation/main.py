@@ -7,9 +7,15 @@ import json
 def main():
     print("Starting...")
 
+    app = True
 
+    while app:
+        result = mainMenu();
+        if result == "end":
+            app = False
+        # elif result == "harvester":
+            # theHarvesterMenu()
 
-    mainMenu();
 
     env = Env("../.env") # .env reader
 
@@ -20,9 +26,9 @@ def main():
     dns = "google.com"
     dnscan = Dnscan(dns)
         #Shodan
-    shodan = Appshodan("API_KEY_SHODAN")
+    shodan = Appshodan(env.get_var("API_KEY_SHODAN"))
         #theHarvester
-    harvester = TheHarvester("google.com")
+    # harvester = TheHarvester("google.com")
     # harvester.run()
 
 

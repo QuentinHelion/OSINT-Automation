@@ -6,5 +6,5 @@ class TheHarvester:
         self.source = source
 
     def run(self):
-        command = "python3 OSINT-Automation/lib/theHarvester/theHarvester.py -d " + self.target + " -b " + self.source + " -f OSINT-Automation/results/theHarvester/" + self.target + ".txt"
+        command = "python3 lib/theHarvester/theHarvester.py -d " + self.target + " -b " + self.source + " -f OSINT-Automation/results/theHarvester/" + self.target + ".txt"
         os.system(command)

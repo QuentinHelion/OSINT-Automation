@@ -2,6 +2,7 @@ import curses
 from curses import wrapper
 import time
 import os
+from .theHarvesterMenu import *
 
 #---------------Ncurses menu to read the documentation---------------
 
@@ -101,7 +102,8 @@ def submenu(menu_win,max_height,max_width,tool):
                     case "SHODAN":
                         print("yes shodan")
                     case "THEHARVESTER":
-                        print("yes the harvester")
+                        # print("yes the harvester")
+                        theHarvesterMenu(menu_win,max_height,max_width)
                     case "URISCAN":
                         print("yes uriscan")
             if current_item == 1:
@@ -127,6 +129,7 @@ def submenu(menu_win,max_height,max_width,tool):
 
         elif v == 27: #escape ASCII value is 27
             menu_win.box()
+            return "end"
             break
 
 
