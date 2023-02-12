@@ -6,8 +6,8 @@ import json
 
 def main():
     print("Starting...")
-    mainMenu(urlscanKEY);
+    mainMenu();
     print("ending...")
-    
+
 if __name__ == "__main__":
     main()
