@@ -2,9 +2,9 @@ Dans ce TP, vous allez devoir réaliser un outil en ligne de commande permettant
 de quelques outils connu servant à la reconnaissance de d'informations publiques (OSINT). Le but étant
 d'arriver à un outil exploitable en condition réel de test d'intrusion.<br>
 **Vous aurez donc à automatiser ces 4 outils :**
-* Dnsscan - récupération passive d'informations liées au DNS
+* Dnsscan - récupération passive d'informations liées au DNS    - FAIT
 * Shodan - récupère en fonction de l'ip ou du nom de domaine des informations sur la cible (utilisable via
-l'api ou l'outil en ligne de commande)
+l'api ou l'outil en ligne de commande)  - FAIT
 * TheHarvester - Récupère des informations sur des adresses mails, noms de domaine etc.
 * [Urlscan.io](https://urlscan.io/docs/api/) - réalise un scan d'une cible et récupère des informations.
 Vous pouvez également implémenter d'autres outils à la place, tant qu'aucun d'entre eux ne réalise de test
